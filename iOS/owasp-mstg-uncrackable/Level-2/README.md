@@ -27,12 +27,22 @@ Source: https://www.youtube.com/watch?v=ME4_RHCaCAk
 
 ## Use Frida to start the application
 ```frida -U -f sg.vp.UnCrackable-2.rebuild```
+
 This will spawn the app but not start it completely
+
 Paste the contents of scripts ```hook-all-classes-methods-app-only.js``` and ```jailbreak-detection-bypass.js```
+
 Start the main thread of application using ```%resume```
+
 Observe that the application has not started the user interface
+
 Open another terminal to run frida: ```frida -U -n Gadget```
+
 Now the application is running and hooks have been executed as well
+
 Enter any text in the input field and click on "Verify"
+
 Observe in the 1st Frida terminal log the decrypted value
+
 Use the decrypted value in the input text field and click "Verfiy" to get the congratulatory alert
+
