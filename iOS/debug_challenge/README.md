@@ -29,6 +29,19 @@ Interceptor.replace(sysctlPtr, new NativeCallback(function () {
 }, "int", []));
 ```
 
+## exception port debugger check
+Documentation: https://developer.apple.com/documentation/kernel/1537860-task_get_exception_ports?language=objc
+```
+Interceptor.attach(Module.findExportByName("libsystem_kernel.dylib", "task_get_exception_ports"), {
+	onEnter: function(args) {
+		console.log("[*] task_get_exception_ports was called")
+		console.log(args[1])
+		args[1] = ptr("0x0")
+		console.log(args[1])
+	}
+});
+```
+
 ## start ptrace deny debugger
 While debugger is attached to debug_challenge app, we have to replace the ```ptrace``` call which is defined inside ```libsystem_kernel.dylib``` using the below Frida script.
 ```
